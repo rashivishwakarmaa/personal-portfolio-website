@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rashi Vishwakarma | Portfolio</title>
+  <style>
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #374151;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #5a77d1;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: #334e7b;
+      outline: none;
+    }
+    .container {
+      width: 90%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 0 4rem 0;
+    }
+    header {
+      background-color: #a3b8f0;
+      color: #1e293b;
+      padding: 1.2rem 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(163,184,240,0.4);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav {
+      margin-top: 0.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1e293b;
+    }
+    nav a.active {
+      border-bottom: 3px solid #334e7b;
+      padding-bottom: 0.25rem;
+      font-weight: 700;
+      color: #2e3c62;
+    }
+    section {
+      margin-top: 3rem;
+    }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 3px solid #5a77d1;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      color: #334e7b;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* About Me */
+    #about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      color: #475569;
+    }
+    #about img {
+      flex: 0 0 150px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #5a77d1;
+      box-shadow: 0 0 10px rgba(90, 119, 209, 0.3);
+      background-color: #e0e7ff;
+    }
+    #about .about-text {
+      flex: 1;
+      min-width: 270px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    #about .about-text p + p {
+      margin-top: 1rem;
+    }
+
+    .resume-download {
+      margin-top: 1rem;
+      background-color: transparent;
+      border: 2px solid #5a77d1;
+      color: #5a77d1;
+      padding: 0.65rem 1.6rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+      text-decoration: none;
+    }
+    .resume-download:hover, .resume-download:focus {
+      background-color: #5a77d1;
+      color: #f8fafc;
+      outline: none;
+    }
+    .resume-download svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: currentColor;
+    }
+
+    /* Skills */
+    #skills ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      color: #475569;
+    }
+    #skills li {
+      background-color: #c7d2fe;
+      color: #3730a3;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 4px 6px rgba(99,102,241,0.3);
+      user-select: none;
+    }
+
+    /* Projects */
+    #projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+    .project-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.07);
+      padding: 1rem 1.2rem 1.5rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #334e7b;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .project-card:hover, .project-card:focus-within {
+      transform: translateY(-7px);
+      box-shadow: 0 14px 24px rgba(0,0,0,0.12);
+      outline: none;
+    }
+    .project-card h3 {
+      margin: 0 0 0.4rem 0;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #1e293b;
+    }
+    .project-card p {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #475569;
+    }
+    .project-card a {
+      align-self: flex-start;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #5a77d1;
+    }
+
+    /* Contact */
+    #contact form {
+      max-width: 480px;
+      background-color: #ffffff;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.07);
+      margin-bottom: 2rem;
+      color: #475569;
+    }
+    #contact label {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+      color: #374151;
+    }
+    #contact input, #contact textarea {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+      resize: vertical;
+      color: #334155;
+      background-color: #f8fafc;
+    }
+    #contact input:focus, #contact textarea:focus {
+      border-color: #5a77d1;
+      outline: none;
+      background-color: #ffffff;
+    }
+    #contact button {
+      background-color: #5a77d1;
+      color: #f8fafc;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #contact button:hover, #contact button:focus {
+      background-color: #344494;
+      outline: none;
+    }
+    #contact .success-message {
+      color: #22c55e;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    #contact .error-message {
+      color: #dc2626;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background-color: #a3b8f0;
+      color: #1e293b;
+      font-size: 0.95rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    footer .social-links {
+      margin-bottom: 0.5rem;
+    }
+    footer .social-links a {
+      margin: 0 0.5rem;
+      color: #334e7b;
+      transition: color 0.3s ease;
+      font-size: 1.5rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    footer .social-links a:hover, footer .social-links a:focus {
+      color: #1e293b;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      nav a {
+        margin: 0 0.6rem;
+        font-size: 1rem;
+      }
+      #about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      #about .about-text {
+        min-width: auto;
+      }
+      #contact form {
+        width: 100%;
+        padding: 1rem 1rem;
+      }
+      #projects {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Rashi Vishwakarma</h1>
+    <nav aria-label="Primary navigation">
+      <a href="#about" class="active">About Me</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container" role="main" tabindex="-1">
+    <!-- About Me -->
+    <section id="about" tabindex="0" aria-label="About Me Section">
+      <img src="rashi_resumepic.jpeg" class="profile-pic" alt="Rashi Vishwakarma Face Photo"/>
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>I'm a purpose-driven B.Tech student specializing in Information Technology, with a passion for building meaningful digital experiences. Whether it's designing clean, responsive interfaces or exploring how AI can enhance everyday solutions, I thrive at the intersection of technology, creativity, and empathy. My journey so far has been shaped by hands-on projects, continuous learning, and a deep curiosity to solve real-world problems through code.</p>
+        <p>I’m always excited to collaborate on ideas that make a difference — whether through internships, hackathons, or personal projects — and I believe in growing through challenges, not just checklists.</p>
+        <a href="http://localhost:5000/api/resume" class="resume-download" download="Rashi_Vishwakarma_Resume.pdf" aria-label="Download Rashi Vishwakarma's Resume in PDF format">
+          Download Resume
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 5h-2v6H7l5 5 5-5h-4zM5 19h14v2H5z"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" tabindex="0" aria-label="Skills Section">
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript (ES6+)</li>
+        <li>React.js</li>
+        <li>Node.js</li>
+        <li>Express.js</li>
+        <li>SQL</li>
+        <li>PostgreSQL</li>
+        <li>Python</li>
+        <li>Java</li>
+        <li>Git & GitHub</li>
+        <li>Responsive Design</li>
+        <li>Web Accessibility</li>
+      </ul>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" tabindex="0" aria-label="Projects Section">
+      <h2>Projects</h2>
+      <div class="project-card" tabindex="0" role="article" aria-labelledby="proj1-title">
+        <h3 id="proj1-title">Personal Portfolio Website</h3>
+        <p>A responsive and personalized portfolio site built using HTML, CSS, and JavaScript to showcase skills, projects, and achievements. Includes a downloadable resume and a contact form that sends user messages through a JavaScript-based backend. Designed to reflect both technical ability and creative style, and hosted live using GitHub Pages.</p>
+        <a href="https://github.com/rashivishwakarmaa/personal-portfolio-website" target="_blank" rel="noopener noreferrer" aria-label="View Project One on GitHub">View on GitHub</a>
+      </div>
+      <div class="project-card" tabindex="0" role="article" aria-labelledby="proj2-title">
+        <h3 id="proj2-title">CalmConnect- A Mental Health Support Platform </h3>
+        <p>A full-stack web app focused on mental wellness, built using React and Flask. It offers a clean, responsive interface where users can explore self-help resources and interact with CalmChat — an AI-powered chatbot. The project blends empathy-driven design with practical tech to create a safe digital space.</p>
+        <a href="https://github.com/rashivishwakarmaa/CalmConnect" target="_blank" rel="noopener noreferrer" aria-label="View Project Two on GitHub">View on GitHub</a>
+      </div>
+      <div class="project-card" tabindex="0" role="article" aria-labelledby="proj3-title">
+        <h3 id="proj3-title">CalmChat-AI Mental Health Chatbot</h3>
+        <p>An AI-based chatbot integrated into CalmConnect to answer mental health and wellness queries. Developed using the OpenAI API and connected through a Flask backend, it provides real-time, supportive responses and enhances user engagement with the platform.</p>
+        <a href="https://github.com/rashivishwakarmaa/calmchat" target="_blank" rel="noopener noreferrer" aria-label="View Project Three on GitHub">View on GitHub</a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" tabindex="0" aria-label="Contact Section">
+      <h2>Contact Me</h2>
+      <form id="contact-form" novalidate>
+        <label for="name">Name <span aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" required aria-required="true" aria-describedby="name-error" placeholder="Your name" />
+        <div id="name-error" class="error-message" aria-live="polite"></div>
+
+        <label for="email">Email <span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-error" placeholder="your.email@example.com" />
+        <div id="email-error" class="error-message" aria-live="polite"></div>
+
+        <label for="message">Message <span aria-hidden="true">*</span></label>
+        <textarea id="message" name="message" rows="5" required aria-required="true" aria-describedby="message-error" placeholder="Write your message here..."></textarea>
+        <div id="message-error" class="error-message" aria-live="polite"></div>
+
+        <button type="submit" aria-label="Send message">Send</button>
+        <div class="success-message" aria-live="polite" role="alert" id="form-success"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social-links" aria-label="Social Media Links">
+      <a href="https://www.linkedin.com/in/rashi-vishwakarma" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn">
+        <svg aria-hidden="true" focusable="false" width="24" height="24" fill="currentColor" viewBox="0 0 448 512">
+          <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1a53.62 53.62 0 1 1 53.62-53.62 53.61 53.61 0 0 1-53.62 53.62zM447.9 448h-92.68V302.4c0-34.7-12.45-58.4-43.45-58.4-23.7 0-37.87 16-44.13 31.4-2.26 5.5-2.83 13.1-2.83 20.7V448h-92.87s1.25-268.2 0-296h92.87v41.9c12.3-19 34.23-46.1 83.24-46.1 60.8 0 106.45 39.7 106.45 125.1V448z"/>
+        </svg>
+      </a>
+      <a href="https://github.com/rashivishwakarmaa" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub">
+        <svg aria-hidden="true" focusable="false" width="24" height="24" fill="currentColor" viewBox="0 0 496 512">
+          <path d="M165.9 397.4c0 2-2.3 3.7-4.2 2.7-11.5-7.6-24.7-14.5-38-20.5-9-3.9-17.4-8.6-24.6-14.1-8.3-6.3-14.6-14.5-18.9-24.3-2.8-6.3-3.6-12.5-2.6-17.1 2-9.4 12.6-12.2 24.8-8.6 9.8 3.1 20.3 8.6 31.4 15.3 5.6 3.8 11.1 7.6 16.3 11.5.5.4 1 .8 1.5 1.4-2-8-3.1-18.7-2.8-32.8.1-4.7 1.5-8.1 5.7-13.7-10 0-20 .1-29.8-1.3-9-1.3-17-3.6-24.9-6.8-6.7-2.8-12.8-6-18.5-10.4-7.2-5.3-13.2-11.6-18-18.5-6.7-9.1-11-18.5-13.8-28.3-1.8-6.3-2.3-12.3-1.8-17 .3-2.9 1.2-5.6 2.4-8.2 2.6-6.2 7.8-11 14-14.1 6.5-3.2 14.2-4.4 22.7-4.4 5.6 0 12 .7 18.9 1.3 14.2 1.3 29.2 2.6 44.2 3.9 15.7 1.4 31 2.9 44.8 3.6 6.8.3 13 .6 17.7 1 2.9.2 5.2.3 7.3.3h.2c8.2-.2 17.1-1.5 26-4.4 11.9-3.8 21.7-11.6 27.5-22.5 2.3-4.6 3.7-9.8 4.3-15 .5-4.4.3-9-.5-13.6-2-11.9-10.5-20.2-23-24.5-13.1-4.5-28.9-5.7-46.8-3.9-2.4.2-4.7.3-7.1.3s-5-.2-7.6-.5c-11.3-1.7-11.9-1.7-12.4-1.6v.2c-3.5 0-6.8-.2-9.9-.5-2-.2-3.8-.4-5.3-.3-11.7 0-23 1.8-33.3 5-6.4 2.2-12.5 5.4-18 9.7-7.6 6.3-11.9 14.8-12.6 25-.6 9.5.1 21.7 2.1 35.2 1 6.5 2.4 14 3.5 22.4z"/>
+        </svg>
+      </a>
+      <a href="https://x.com/Rashi_V6" target="_blank" rel="noopener noreferrer" aria-label="X Profile" title="X">
+        <svg aria-hidden="true" focusable="false" width="24" height="24" fill="currentColor" viewBox="0 0 512 512">
+          <path d="M459.4 151.7c.3 4.1.3 8.3.3 12.6 0 128.6-97.8 276.8-276.8 276.8-55 0-106.3-16-149.5-43.3a196.84 196.84 0 0 0 145-40.6 97.71 97.71 0 0 1-91-67.8 122.82 122.82 0 0 0 18.4 1.5 103.08 103.08 0 0 0 26-3.4 97.67 97.67 0 0 1-78.3-95.8v-1.2a97.6 97.6 0 0 0 44.1 12.3 97.62 97.62 0 0 1-30.1-130.2 277.4 277.4 0 0 0 201.5 102.3c-8.4-40.4 14.1-82.5 52.3-98.2 15.1-6.3 31.2-6.2 46-.2a194.32 194.32 0 0 0 62.2-23.7 98.03 98.03 0 0 1-43 54.1 195.63 195.63 0 0 0 56.3-15.3 194.06 194.06 0 0 1-48.9 50.6z"/>
+        </svg>
+      </a>
+    </div>
+    <p>&copy; 2025 Rashi Vishwakarma. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling for nav links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        const targetID = anchor.getAttribute('href').substring(1);
+        const target = document.getElementById(targetID);
+        if (target) {
+          target.focus({preventScroll:false});
+          window.scrollTo({
+            top: target.offsetTop - 60,
+            behavior: 'smooth'
+          });
+          // Update active nav link
+          document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+          anchor.classList.add('active');
+        }
+      });
+    });
+
+    // Contact form validation and send handler with backend
+    const form = document.getElementById('contact-form');
+    const nameInput = form.name;
+    const emailInput = form.email;
+    const messageInput = form.message;
+    const successMsg = document.getElementById('form-success');
+    const errorElems = {
+      name: document.getElementById('name-error'),
+      email: document.getElementById('email-error'),
+      message: document.getElementById('message-error')
+    };
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      successMsg.textContent = '';
+      let valid = true;
+
+      if (nameInput.value.trim().length < 2) {
+        errorElems.name.textContent = 'Please enter your name (at least 2 characters).';
+        valid = false;
+      } else {
+        errorElems.name.textContent = '';
+      }
+
+      if (!validateEmail(emailInput.value.trim())) {
+        errorElems.email.textContent = 'Please enter a valid email address.';
+        valid = false;
+      } else {
+        errorElems.email.textContent = '';
+      }
+
+      if (messageInput.value.trim().length < 10) {
+        errorElems.message.textContent = 'Message should be at least 10 characters.';
+        valid = false;
+      } else {
+        errorElems.message.textContent = '';
+      }
+
+      if (!valid) return;
+
+      // If backend is set up, update the fetch URL accordingly.
+      // For now, we simulate success:
+      try {
+        /*
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim(),
+            message: messageInput.value.trim()
+          })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Error sending message');
+        successMsg.textContent = data.message || 'Message sent successfully! I will get back to you ASAP.';
+        */
+        // Simulated success
+        successMsg.textContent = 'Thank you for your message! I will get back to you ASAP.';
+        form.reset();
+      } catch (error) {
+        alert(error.message || 'Something went wrong. Please try again later.');
+      }
+    });
+
+    // Update active nav link on scroll
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      scrollPos += 80; // offset for sticky header
+
+      sections.forEach(section => {
+        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+          const id = section.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
